@@ -1,23 +1,34 @@
 <script setup lang="ts">
-const online = useOnline()
+import gsap from 'gsap'
+
+onMounted(() => {
+  gsap.to('.box', {
+    x: 100,
+    y: 100,
+  })
+})
 </script>
 
 <template>
-  <div>
-    <Logos mb-6 />
-    <Suspense>
-      <ClientOnly>
-        <PageView v-if="online" />
-        <div v-else text-gray:80>
-          You're offline
-        </div>
-      </ClientOnly>
-      <template #fallback>
-        <div italic op50>
-          <span animate-pulse>Loading...</span>
-        </div>
-      </template>
-    </Suspense>
-    <InputEntry />
+  <div id="container">
+    <div class="box">
+      <img class="green" src="https://greensock.com/wp-content/uploads/custom/draggable/img/knob.png" alt="">
+    </div>
   </div>
 </template>
+
+<style>
+.box {
+    display: block;
+    width: 300px;
+    height: 300px;
+    border: 1px solid red;
+    border-radius: 50%;
+    text-align: center;
+    background-image: url(https://greensock.com/wp-content/uploads/custom/draggable/img/knob_bg.jpg);
+    background-size: cover;
+  }
+  img{
+    width: 100%;
+  }
+</style>
